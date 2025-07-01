@@ -1,0 +1,38 @@
+{% extends 'base2.html' %}
+{% block title %}Editar Usuario{% endblock %}
+
+{% block content %}
+<h2>Editar Usuario</h2>
+
+<form method="POST">
+  <div class="mb-3">
+    <label for="nombre" class="form-label">Nombre</label>
+    <input type="text" id="nombre" name="nombre" class="form-control" required value="{{ usuario.nombre }}">
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" id="email" name="email" class="form-control" required value="{{ usuario.email }}">
+  </div>
+
+  <div class="mb-3">
+    <label for="rol" class="form-label">Rol</label>
+    <select id="rol" name="rol" class="form-select">
+      <option value="cliente" {% if usuario.rol == 'cliente' %}selected{% endif %}>Cliente</option>
+      <option value="empleado" {% if usuario.rol == 'empleado' %}selected{% endif %}>Empleado</option>
+      <option value="admin" {% if usuario.rol == 'admin' %}selected{% endif %}>Administrador</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="estado" class="form-label">Estado</label>
+    <select id="estado" name="estado" class="form-select">
+      <option value="activo" {% if usuario.estado == 'activo' %}selected{% endif %}>Activo</option>
+      <option value="inactivo" {% if usuario.estado == 'inactivo' %}selected{% endif %}>Inactivo</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Actualizar</button>
+  <a href="{{ url_for('usuarios.listar_usuarios') }}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}
